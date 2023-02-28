@@ -1,2 +1,2 @@
 # ML_helpers
-Python ML helper functions
+Python Machine Learning helper functions
