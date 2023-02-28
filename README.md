@@ -94,5 +94,5 @@ alks through dir_path returning its contents.
 
   Returns a dictionary of accuracy, precision, recall, f1-score.
  
-    
+  Based on original script from https://github.com/mrdbourke
     
