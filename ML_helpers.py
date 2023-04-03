@@ -264,3 +264,33 @@ def calculate_results(y_true, y_pred):
                   "recall": model_recall,
                   "f1": model_f1}
   return model_results
+
+# Create a function to load and prepare images
+def load_and_prep_image(filename, img_shape=224, scale=True):
+  """
+  Reads in an image from filename, turns it into a tensor and reshapes into specified shape (img_shape, img_shape, color_channels=3).
+
+  Args:
+    filename (str): path to target image
+    img_shape (int): height/width dimension of target image size, default 224
+    scale (bool): scale pixel values from 0-255 to 0-1 or not, not needed for EfficientnetB0
+
+  Returns:
+    Image tensor of shape (img_shape, img_shape, 3)
+"""
+# Read in the image
+img = tf.io.read_file(filename)
+
+# Decode image into tensor
+img = tf.io.decode_image(img, channels=3)
+
+# Resize the image
+img = tf.image.resize(img, [img_shape, img_shape])
+
+# Scale?  Yes/No
+if scale:
+  # rescale the image (normalize to get all values between 0 and 1)
+  return img/255
+else:
+  return img
+
